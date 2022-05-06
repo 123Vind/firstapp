@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -30,20 +31,17 @@ class TestingWidget extends StatefulWidget {
 
 class _TestingWidgetState extends State<TestingWidget> {
   int t = 0;
-  String counter = "";
-  void changecounter() {
+  var d = Colors.amber;
+  bool b = false;
+  void changecolor() {
     setState(() {
-      if (t == 30) {
-        t = 0;
+      if (b == false) {
+        b = true;
+        d = Colors.amber;
+      } else {
+        b = false;
+        d = Colors.red;
       }
-      t++;
-      counter = t.toString();
-    });
-  }
-
-  void change2() {
-    setState(() {
-      counter = "Long press";
     });
   }
 
@@ -61,14 +59,19 @@ class _TestingWidgetState extends State<TestingWidget> {
             children: [
               Column(
                 children: [
-                  Text(
-                    '$counter',
-                    style: TextStyle(fontSize: 40),
+                  Container(
+                    width: 200,
+                    height: 200,
+                    color: d,
+                    child: const Center(
+                      child: Text(
+                        "Hello",
+                      ),
+                    ),
                   ),
                   ElevatedButton(
-                    onPressed: changecounter,
+                    onPressed: changecolor,
                     child: const Text('CLICK ME'),
-                    onLongPress: change2,
                   )
                 ],
               )
