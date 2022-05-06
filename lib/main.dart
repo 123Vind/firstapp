@@ -29,13 +29,21 @@ class TestingWidget extends StatefulWidget {
 }
 
 class _TestingWidgetState extends State<TestingWidget> {
-  int counter = 0;
+  int t = 0;
+  String counter = "";
   void changecounter() {
     setState(() {
-      if (counter == 30) {
-        counter = 0;
+      if (t == 30) {
+        t = 0;
       }
-      counter++;
+      t++;
+      counter = t.toString();
+    });
+  }
+
+  void change2() {
+    setState(() {
+      counter = "Long press";
     });
   }
 
@@ -58,7 +66,10 @@ class _TestingWidgetState extends State<TestingWidget> {
                     style: TextStyle(fontSize: 40),
                   ),
                   ElevatedButton(
-                      onPressed: changecounter, child: const Text('CLICK ME'))
+                    onPressed: changecounter,
+                    child: const Text('CLICK ME'),
+                    onLongPress: change2,
+                  )
                 ],
               )
             ],
